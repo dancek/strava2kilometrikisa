@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   kilometrikisa: {
     user: "",
     password: ""
