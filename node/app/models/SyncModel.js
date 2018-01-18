@@ -6,13 +6,13 @@ var SyncModel = {
 
 
     /**
-     * Get cycling activities from Strava and calculate daily sum for distance and time. 
+     * Get cycling activities from Strava and calculate daily sum for distance and time.
      * Return in a format suitable for posting to Kilometrikisa:
      *
      * Example return value:
      *
      * {
-     *   "2016-04-05": { 
+     *   "2016-04-05": {
      *      distance: 1,5,
      *      hours: 1,
      *      minutes: 23
@@ -76,10 +76,10 @@ var SyncModel = {
         //     has_kudoed: false,
         //     workout_type: 10 } ];
 
-        // Get activities from last five days but not before 1st of may.
+        // Get activities from last month but not before 2018-01-01.
         var d = new Date();
-        var after = (new Date(d.getFullYear(), d.getMonth(), d.getDate() - 5)).getTime() / 1000;
-        var earliestTime = 1462060800; // 1st of may
+        var after = (new Date(d.getFullYear(), d.getMonth(), d.getDate() - 30)).getTime() / 1000;
+        var earliestTime = 1514764800; // 2018-01-01
         if (after < earliestTime) after = earliestTime;
 
         strava.athlete.listActivities({access_token: stravaToken, after: after}, function(err, activities) {
@@ -183,7 +183,7 @@ var SyncModel = {
                     Kilometrikisa.updateLog(
                         kilometrikisaToken,
                         kilometrikisaSessionId,
-                        22,
+                        30,
                         activities[date].distance,
                         date,
                         function() {
@@ -198,7 +198,7 @@ var SyncModel = {
                     Kilometrikisa.updateMinuteLog(
                         kilometrikisaToken,
                         kilometrikisaSessionId,
-                        22,
+                        30,
                         activities[date].hours,
                         activities[date].minutes,
                         date,
