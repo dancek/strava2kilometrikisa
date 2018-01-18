@@ -1,5 +1,15 @@
 /**
- * A trivial script to sync your data without a server.
+ * A trivial script to sync your data when the server doesn't work.
+ *
+ * Usage:
+ * - clone this repo
+ * - `cd node/app`
+ * - `npm install`
+ * - `cp cli-secrets.template.js cli-secrets.js`
+ * - `vim cli-secrets.js`
+ * - add your Kilometrikisa username+password, Strava userId (8 digits) and
+ *   Strava app token (get one from https://www.strava.com/settings/api )
+ * - `node cli.js`
  */
 
 const Kilometrikisa = require("./lib/kilometrikisa")
